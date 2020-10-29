@@ -13,7 +13,7 @@
     function preload() {
     firstPath = loadTable('Jamie.csv', 'csv', 'header');
     secondPath = loadTable('Miguel.csv', 'csv', 'header');
-    // thirdPath = loadTable('track_points antoine.csv', 'csv', 'header');
+    thirdPath = loadTable('Antoine.csv', 'csv', 'header');
     }
 
 
@@ -25,7 +25,7 @@
 
     myMap.onChange(drawPathJamie.bind(null, firstPath));
     myMap.onChange(drawPathMiguel.bind(null, secondPath));
-    // myMap.onChange(drawPathAntoine.bind(null, thirdPath));
+    myMap.onChange(drawPathAntoine.bind(null, thirdPath));
     }
 
 
@@ -52,23 +52,23 @@
     }
     }
 
-    // function drawPathAntoine(path) {
-    // for (let i = 0; i < path.getRowCount() - 1; i++) {
-    // const latitude = Number(path.getString(i, 'latitude'));
-    // const longitude = Number(path.getString(i, 'longitude'));
-    // const latitude2 = Number(path.getString(i+1, 'latitude'));
-    // const longitude2 = Number(path.getString(i+1, 'longitude'));
-    //
-    // if (myMap.map.getBounds().contains({lat: latitude, lng: longitude})) {
-    // const pos = myMap.latLngToPixel(latitude, longitude);
-    // const pos2 = myMap.latLngToPixel(latitude2, longitude2);
-    //
-    // stroke(255,106,19);
-    // strokeWeight(1.5);
-    // line(pos.x, pos.y, pos2.x, pos2.y);
-    // }
-    // }
-    // }
+    function drawPathAntoine(path) {
+    for (let i = 0; i < path.getRowCount() - 1; i++) {
+    const latitude = Number(path.getString(i, 'latitude'));
+    const longitude = Number(path.getString(i, 'longitude'));
+    const latitude2 = Number(path.getString(i+1, 'latitude'));
+    const longitude2 = Number(path.getString(i+1, 'longitude'));
+
+    if (myMap.map.getBounds().contains({lat: latitude, lng: longitude})) {
+    const pos = myMap.latLngToPixel(latitude, longitude);
+    const pos2 = myMap.latLngToPixel(latitude2, longitude2);
+
+    stroke(255,0,255);
+    strokeWeight(4);
+    line(pos.x, pos.y, pos2.x, pos2.y);
+    }
+    }
+    }
 
     function drawPathMiguel(path) {
     for (let i = 0; i < path.getRowCount() - 1; i++) {
